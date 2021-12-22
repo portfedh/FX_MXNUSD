@@ -2,13 +2,15 @@
 
 ## What it does
 
-A simple script used to determine the USD:MXN official exchange rate between two periods.
+A simple script used to determine the USD:MXN official exchange rate between two periods:
 
-The user will input an initial and final date.
+- The user will input an initial and final date.
 
-The program connects through an API to the Bank of Mexico (Banxico) and retreives the FX daily rate for the period.
+- The script connects to the Bank of Mexico (Banxico) API. 
 
-The script will then output the FX rates in the terminal window.
+- It requests the FX daily rate for the period.
+
+- It then outputs the FX rates in the terminal window.
 
 ### How to Install
 
@@ -47,7 +49,7 @@ Output will display the FX rates for the period.
 
 ## Use cases
 
-The script is useful for accountants or administrative/financial professionals.
+The script may be useful for accountants,  administrative/financial professionals or anyone interested in using official FX rates.
 
 The Bank of Mexico issues 3 types of USD:MXN exchange rates:
 
@@ -55,15 +57,15 @@ The Bank of Mexico issues 3 types of USD:MXN exchange rates:
 - DOF
 - Obligaciones
 
-FIX: is calculated by taking the average level of all trades up to 12pm. It is used mainly for transactions that want to use an official rate which is closer to the spot rate of when a transaction is made.
+FIX: is calculated by taking the average price of all trades up to 12pm. It is used mainly for transactions that an official rate closer to the spot rate.
 
-DOF: (Diario Oficial de la Federacion). The Fix rate is published the next day in the DOF, which is where the Mexican government makes official publications. Some institutions use DOF rate because its rate can be known beforehand from the FIX rate and can give insitutions enough time to prepare for a transaction.
+DOF: (Diario Oficial de la Federacion). The Fix rate is published the next day in the DOF, which is where the Mexican Government makes official publications. Some institutions use DOF rate because its rate can be known beforehand from the FIX rate and can give enough time to prepare for a transaction.
 
-Obligaciones: This rate is the FIX rate from two previous days. It also sets an official FX rate for weekends, hollidays or any non tradable days, where FIX or DOF may not be available. It is the rate used for tax purposes and in dealings with any government institutions.
+Obligaciones: This rate is the FIX rate from two day prior. It also sets an official FX rate for weekends, hollidays or any non tradable days, where FIX or DOF may not be available. It is the rate used for tax purposes and in dealings with any government institutions in Mexico.
 
 The script is set by default to get the "Obligaciones" FX rate.
 
-If you want to use FIX, substitute the following.
+If you want to use FIX instead, substitute the following code:
 
 ```python
 # Before
@@ -77,4 +79,6 @@ If you want to use DOF, you will have to modify the code to get the FIX rate fro
 
 ## Contributing
 
-If you can help making this a simple executable file for windows and mac, so non-programmers can use it, it would be much appreciated.
+Any help making the scripto into an executable file for windows and mac would be very helpful. 
+
+This would allow non-programmers to use it. 

@@ -1,14 +1,14 @@
 # Importing Modules
 ######################
-# para sacar las enviroment variables
+# Sacar las enviroment variables (token de Banxico)
 import os
-# Para enviar HTTP requests usando python
+# Enviar HTTP requests usando python
 import requests
-# Para transformar los datos en un DataFrame
+# Transformar los datos en un DataFrame
 import pandas as pd
 
 # Fechas para el calculo
-##################################
+########################
 print("\n Busqueda de FX para Solventar Obligaciones: \n")
 
 # Fecha Inicial
@@ -17,8 +17,8 @@ fecha_inicial = input("Fecha Inicial de Busqueda yyyy-mm-dd: ")
 # Fecha Final
 fecha_final = input("Fecha Final de Busqueda yyyy-mm-dd: ")
 
-# Banxico
-##################################
+# Conexion a Banxico
+####################
 
 # Token de Consulta Banxico
 token = os.environ.get("token_banxico")
@@ -27,7 +27,7 @@ token = os.environ.get("token_banxico")
 obligaciones = "SF60653"  # FX Para Solventar Obligaciones
 
 # Descargando datos de Banxico
-#######################################
+##############################
 
 
 # Funcion de Descarga
@@ -71,11 +71,13 @@ def descarga_bmx_serie(serie, fechainicio, fechafin, token):
 
 
 # Ejecutando la Solicitud de Descarga
+#####################################
 dolares_bmx = (descarga_bmx_serie(obligaciones,
                str(fecha_inicial), str(fecha_final), token))
 
 
 # Mostramos la informacion sin el indice
+########################################
 print("\n")
 print(df.to_string(index=False))
 print("\n")
