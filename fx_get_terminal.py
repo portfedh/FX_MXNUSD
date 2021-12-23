@@ -20,11 +20,9 @@ token = os.environ.get("token_banxico")
 obligaciones = "SF60653"  # FX Para Solventar Obligaciones
 # Clave de Descarga Banxico
 
-# Descargando datos de Banxico
+
+# Funcion de descarga de datos
 ##############################
-
-
-# Funcion de Descarga de datos de Banxico
 def descarga_bmx_serie(serie, fechainicio, fechafin, token):
     # Al site de banxico se le pegan los datos de consulta
     url = ("https://www.banxico.org.mx/SieAPIRest/service/v1/series/"
@@ -41,15 +39,17 @@ def descarga_bmx_serie(serie, fechainicio, fechafin, token):
     # Se le solicita el codigo de respuesta al servidor.
     status = response.status_code
     if status == 200:
-    # Si el estatus esta Ok crear el dataframe
+        # Si el estatus esta Ok crear el dataframe
         raw_data = response.json()
         # Se guarda la respuesta como una variable.
         data = raw_data["bmx"]["series"][0]["datos"]
         # Se filtra el json
         # Se accesa el diccionario con los datos
         global df
+        # Hacemos que la variable df sea global para poder accesarla despues
+
         df = pd.DataFrame(data)
-        # Creamos un dataframe con la infrmacion
+        # Creamos un dataframe con la informacion
         df["dato"] = df["dato"].apply(lambda x: float(x))
         # Volvemos los datos floats en vez de strings
         df["fecha"] = pd.to_datetime(df["fecha"], format="%d/%m/%Y")
@@ -58,7 +58,7 @@ def descarga_bmx_serie(serie, fechainicio, fechafin, token):
         # Cambia el nombre de la columna "dato"  por tipo de cambio
         return(df)
     else:
-    # Si el estatus esta mal imprimir el prror en la terminal
+        # Si el estatus esta mal imprimir el prror en la terminal
         print(status)
 
 
