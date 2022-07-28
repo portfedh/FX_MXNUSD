@@ -1,77 +1,77 @@
 # Programa para mostrar el tipo de cambio MXN:USD
 # Para un periodo de fechas.
 
-# Imports del Programa
-######################
+# Imports
+#########
 import os
 import requests
 import pandas as pd
 
-# Fechas para el calculo
-########################
-print("\n Busqueda de FX para Solventar Obligaciones: \n")
-fecha_inicial = input("Fecha Inicial de Busqueda yyyy-mm-dd: ")
-fecha_final = input("Fecha Final de Busqueda yyyy-mm-dd: ")
-
-# Conexion a Banxico
+# Get the API Token
 ####################
-token = os.environ.get("token_banxico")
-# Token de Consulta Banxico
-obligaciones = "SF60653"  # FX Para Solventar Obligaciones
-# Clave de Descarga Banxico
+api_token = os.environ.get("token_banxico")
+# api_token = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'  # Alternativa
 
 
 # Funcion de descarga de datos
 ##############################
-def descarga_bmx_serie(serie, fechainicio, fechafin, token):
-    # Al site de banxico se le pegan los datos de consulta
-    url = ("https://www.banxico.org.mx/SieAPIRest/service/v1/series/"
+def descarga_banxico(serie, fechainicio, fechafin, token):
+    www = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/"
+    url = (www
            + serie
            + "/datos/"
            + fechainicio
            + "/"
            + fechafin
            )
-    # Se le tienen que pasar Headers
+    # Se crea un diccionarion con el token del API
     headers = {"Bmx-Token": token}
-    # Se pasa como un request con metodo get
+    # Hacer un GET request a la pagina del API
     response = requests.get(url, headers=headers)
-    # Se le solicita el codigo de respuesta al servidor.
+    # Revisar el codigo de respuesta
     status = response.status_code
+    # Si el estatus esta OK:
     if status == 200:
-        # Si el estatus esta Ok crear el dataframe
+        # Crear un objeto json
         raw_data = response.json()
-        # Se guarda la respuesta como una variable.
+        # Accesar los datos dentro del objeto json
         data = raw_data["bmx"]["series"][0]["datos"]
-        # Se filtra el json
-        # Se accesa el diccionario con los datos
-        global df
-        # Hacemos que la variable df sea global para poder accesarla despues
-
+        # Creamos un dataframe con los datos
         df = pd.DataFrame(data)
-        # Creamos un dataframe con la informacion
+        # Transformamos los datos de strings a floats
         df["dato"] = df["dato"].apply(lambda x: float(x))
-        # Volvemos los datos floats en vez de strings
+        # Transformamos las fechas de strings a datetime
         df["fecha"] = pd.to_datetime(df["fecha"], format="%d/%m/%Y")
-        # Volvemos las fechas a formato fecha
+        # Renombramos las columnas
         df.columns = ['Fecha', 'Tipo de Cambio']
-        # Cambia el nombre de la columna "dato"  por tipo de cambio
         return(df)
+    # Si el estatus tiene error:
     else:
-        # Si el estatus esta mal imprimir el prror en la terminal
+        # Imprimir el error
         print(status)
 
 
-# Ejecutando la Solicitud de Descarga
-#####################################
-dolares_bmx = descarga_bmx_serie(obligaciones,
-                                 str(fecha_inicial),
-                                 str(fecha_final),
-                                 token)
+if __name__ == '__main__':
 
+    # Fechas para el calculo
+    ########################
+    print("\nBusqueda de FX para Solventar Obligaciones: \n")
+    fecha_inicial = input("Fecha Inicial de Busqueda yyyy-mm-dd: ")
+    fecha_final = input("Fecha Final de Busqueda yyyy-mm-dd: ")
 
-# Mostramos la informacion sin el indice
-########################################
-print("\n")
-print(df.to_string(index=False))
-print("\n")
+    # Determinando la serie: 'Para solventar Obligaciones'
+    ######################################################
+    obligaciones = "SF60653"
+
+    # Ejecutando the function
+    #########################
+    df = descarga_banxico(obligaciones,
+                          str(fecha_inicial),
+                          str(fecha_final),
+                          api_token)
+
+    # Mostrar los datos en la terminal
+    ##################################
+    print("\n")
+    print(df.to_string(index=False))
+    print("\n")
