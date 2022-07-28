@@ -6,11 +6,11 @@ A simple script used to determine the USD:MXN official exchange rate between two
 
 - The user will input an initial and final date.
 
-- The script connects to the Bank of Mexico (Banxico) API. 
+- The script will connect to the Bank of Mexico's (Banxico) API.
 
-- It requests the FX daily rate for the period.
+- It will request the exchange rate for the seleted dtes.
 
-- It then outputs the FX rates in the terminal window.
+- It will then display the exchange rates in the terminal window.
 
 ### How to Install
 
@@ -21,7 +21,8 @@ To use this script, you must have previously installed:
 - Requests
 
 You will also need a (free) API token from Banxico, which can be obtained here:
-[API Banxico](https://www.banxico.org.mx/SieAPIRest/service/v1/)
+[API Banxico Spanish](https://www.banxico.org.mx/SieAPIRest/service/v1/)
+[API Banxico English](https://www.banxico.org.mx/SieAPIRest/service/v1/?locale=en)
 
 Once you have the API token subsitute it in the Token variable:
 
@@ -30,14 +31,26 @@ Once you have the API token subsitute it in the Token variable:
 token = os.environ.get("token_banxico")
 
 # After
-token = "<paste_token_here>"
+token = "<paste_your_token_here>"
 ```
 
 You can then run the python script from your terminal.
 
-If you use this information frequently, I recommend adding an alias to the script path to make it simpler to call the script.
+If you upload the scpript to any public repository, It is recommend saving the token as an enviroment variable for security reasons.
+
+If you use this information frequently you can add an alias in your bash.rc, .zshrc or wherever you store aliases in your operating system to call the script in a simpler way.
 
 ## How to Use
+
+Simply execute the script from your terminal:
+
+```bash
+# Spanish
+python3 fx_get_terminal.py
+
+# English
+python3 fx_get_terminal_en.py
+```
 
 When run, the script will ask for a start and end date
 
@@ -49,7 +62,7 @@ Output will display the FX rates for the period.
 
 ## Use cases
 
-The script may be useful for accountants,  administrative/financial professionals or anyone interested in using official FX rates.
+The script may be useful for accountants, administrative, financial professionals or anyone interested in using official FX rates that are valid for tax purposes.
 
 The Bank of Mexico issues 3 types of USD:MXN exchange rates:
 
@@ -63,15 +76,18 @@ DOF: (Diario Oficial de la Federacion). The Fix rate is published the next day i
 
 Obligaciones: This rate is the FIX rate from two day prior. It also sets an official FX rate for weekends, hollidays or any non tradable days, where FIX or DOF may not be available. It is the rate used for tax purposes and in dealings with any government institutions in Mexico.
 
+You can find a more in depth explanation of the difference in FX rates here:
+[Understanding the MXN:USD exchange rate](https://pablocruz.io/how-to-get-the-official-usd-mxn-exchange-rate-from-banxico/)
+
 The script is set by default to get the "Obligaciones" FX rate.
 
 If you want to use FIX instead, substitute the following code:
 
 ```python
-# Before
+# Before (Obligaciones)
 obligaciones = "SF60653" 
 
-# After
+# After (FIX)
 obligaciones = "SF43718" 
 ```
 
@@ -79,6 +95,6 @@ If you want to use DOF, you will have to modify the code to get the FIX rate fro
 
 ## Contributing
 
-Any help making the scripto into an executable file for windows and mac would be very helpful. 
+Any help making the scripto into an executable file for windows and mac would be very helpful.
 
-This would allow non-programmers to use it. 
+This would allow non-programmers to use it.
