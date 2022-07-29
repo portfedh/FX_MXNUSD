@@ -36,9 +36,6 @@ def download_banxico(series, start_date, end_date, token):
         raw_data = response.json()
         # Access the data inside the object
         data = raw_data["bmx"]["series"][0]["datos"]
-        # global df
-        # Hacemos que la variable global para poder accesarla despues
-        
         # Create a dataframe from the data
         df = pd.DataFrame(data)
         # Transform values from strings to floats
