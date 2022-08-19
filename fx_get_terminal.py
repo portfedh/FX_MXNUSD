@@ -1,5 +1,7 @@
 # Programa para mostrar el tipo de cambio MXN:USD
 # Para un periodo de fechas.
+# Autor: Pablo Cruz Lemini
+
 
 # Imports
 #########

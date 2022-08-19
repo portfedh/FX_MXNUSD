@@ -1,5 +1,6 @@
 # Script to display the MXN:USD exchange rate
 # For a given time period in the terminal
+# Author: Pablo Cruz Lemini
 
 # Imports
 #########
