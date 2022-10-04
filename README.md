@@ -24,7 +24,7 @@ You will also need a (free) API token from Banxico, which can be obtained here:
 [API Banxico Spanish](https://www.banxico.org.mx/SieAPIRest/service/v1/)
 [API Banxico English](https://www.banxico.org.mx/SieAPIRest/service/v1/?locale=en)
 
-Once you have the API token subsitute it in the Token variable:
+Once you have the API token substitute it in the Token variable:
 
 ```python
 # Before
