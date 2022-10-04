@@ -8,7 +8,7 @@ A simple script used to determine the USD:MXN official exchange rate between two
 
 - The script will connect to the Bank of Mexico's (Banxico) API.
 
-- It will request the exchange rate for the seleted dtes.
+- It will request the exchange rate for the selected dates.
 
 - It will then display the exchange rates in the terminal window.
 
@@ -36,7 +36,7 @@ token = "<paste_your_token_here>"
 
 You can then run the python script from your terminal.
 
-If you upload the scpript to any public repository, It is recommend saving the token as an enviroment variable for security reasons.
+If you upload the script to any public repository, It is recommend saving the token as an environment variable for security reasons.
 
 If you use this information frequently you can add an alias in your bash.rc, .zshrc or wherever you store aliases in your operating system to call the script in a simpler way.
 
@@ -74,7 +74,7 @@ FIX: is calculated by taking the average price of all trades up to 12pm. It is u
 
 DOF: (Diario Oficial de la Federacion). The Fix rate is published the next day in the DOF, which is where the Mexican Government makes official publications. Some institutions use DOF rate because its rate can be known beforehand from the FIX rate and can give enough time to prepare for a transaction.
 
-Obligaciones: This rate is the FIX rate from two day prior. It also sets an official FX rate for weekends, hollidays or any non tradable days, where FIX or DOF may not be available. It is the rate used for tax purposes and in dealings with any government institutions in Mexico.
+Obligaciones: This rate is the FIX rate from two day prior. It also sets an official FX rate for weekends, holidays or any non tradable days, where FIX or DOF may not be available. It is the rate used for tax purposes and in dealings with any government institutions in Mexico.
 
 You can find a more in depth explanation of the difference in FX rates here:
 [Understanding the MXN:USD exchange rate](https://pablocruz.io/how-to-get-the-official-usd-mxn-exchange-rate-from-banxico/)
@@ -95,6 +95,6 @@ If you want to use DOF, you will have to modify the code to get the FIX rate fro
 
 ## Contributing
 
-Any help making the scripto into an executable file for windows and mac would be very helpful.
+Any help making the scrip to into an executable file for windows and mac would be very helpful.
 
 This would allow non-programmers to use it.
