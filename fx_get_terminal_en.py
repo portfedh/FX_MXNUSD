@@ -9,17 +9,11 @@ import pandas as pd
 class GetFxTerminal():
     api_token = os.environ.get("token_banxico")
     obligaciones = "SF60653"
+    fix = "SF63528"
     www = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/"
 
     def __init__(self):
-        self.get_dates()
-        self.get_data(
-            GetFxTerminal.obligaciones,
-            self.fecha_inicial,
-            self.fecha_final,
-            GetFxTerminal.api_token
-            )
-        self.print_output()
+        pass
 
     def get_dates(self):
         print("\nThis script will fetch the official MXN:USD exchange rate for a period: \n")
@@ -68,3 +62,11 @@ class GetFxTerminal():
 
 if __name__ == '__main__':
     oGetFx = GetFxTerminal()
+    oGetFx.get_dates()
+    oGetFx.get_data(
+        GetFxTerminal.obligaciones,
+        oGetFx.fecha_inicial,
+        oGetFx.fecha_final,
+        GetFxTerminal.api_token
+        )
+    oGetFx.print_output()
